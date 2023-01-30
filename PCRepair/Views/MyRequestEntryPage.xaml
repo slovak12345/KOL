@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PCRepair.Views.MyRequestEntryPage"
+             Title="Заявка">
+    <ScrollView>
+        <Frame
+            OutlineColor="Silver"
+            Padding="5">
+            <StackLayout Margin="10">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Номер заявки: "/>
+                    <Label Text="{Binding ID}">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label"
+                                             Binding="{Binding ID}"
+                                             Value="0">
+                                <Setter Property="IsVisible" Value="false" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="ФИО клиента"/>
+                    <Editor Text="{Binding ClientName}" />
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Конфигурация компьютера"/>
+                    <Editor 
+                        Text="{Binding PCConfig}"
+                        HeightRequest="100"
+                        AutoSize="TextChanges"
+                        MaxLength="180" 
+                    />
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Неисправность"/>
+                    <Editor 
+                        Text="{Binding Malfunction}"
+                        HeightRequest="100"
+                        AutoSize="TextChanges"
+                        MaxLength="180" 
+                    />
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Выполненные работы"/>
+                    <Editor 
+                        Text="{Binding RepairActions}"
+                        HeightRequest="100"
+                        AutoSize="TextChanges"
+                        MaxLength="180" 
+                    />
+                </StackLayout>
+                <Grid ColumnDefinitions="Auto,*">
+                    <Label VerticalTextAlignment="Center"
+                        Text="Стоимость работы"/>
+                    <Editor Grid.Column="1"
+                        Text="{Binding RepairCost}"
+                        Keyboard="Numeric"                         
+                    />
+                </Grid>
+                <Grid ColumnDefinitions="Auto,*">
+                    <Label VerticalTextAlignment="Center"
+                        Text="Стоимость запчастей"/>
+                    <Editor Grid.Column="1"
+                        Text="{Binding RepairCost}"
+                        Keyboard="Numeric"                         
+                    />
+                </Grid>
+                <Grid ColumnDefinitions="Auto,*">
+                    <CheckBox
+                    IsChecked="{Binding Completed}"
+                        />
+                    <Label Grid.Column="1"
+                        VerticalTextAlignment="Center"
+                    Text="Заявка закрыта"/>
+                </Grid>
+
+                <!-- Layout children in two columns -->
+                <Grid ColumnDefinitions="*,*">
+                    <Button Text="Сохранить"
+                        Clicked="OnSaveButtonClicked" />
+                    <Button Grid.Column="1"
+                        Text="Удалить"
+                        Clicked="OnDeleteButtonClicked"/>
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </ScrollView>
+</ContentPage>

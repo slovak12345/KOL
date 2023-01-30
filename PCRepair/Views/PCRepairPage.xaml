@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PCRepair.Views.PCRepairPage"
+             Title="Заявки">
+    <!-- Add an item to the toolbar -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Новая заявка"
+                     Clicked="OnAddClicked" />
+    </ContentPage.ToolbarItems>
+
+    <!-- Display tasks in a list -->
+    <CollectionView x:Name="collectionView"
+                    Margin="20"
+                    SelectionMode="Single"
+                    SelectionChanged="OnSelectionChanged">
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical"
+                               ItemSpacing="3" />
+        </CollectionView.ItemsLayout>
+        <!-- Define the appearance of each item in the list -->
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Frame
+                    OutlineColor="Silver"
+                    Padding="5"
+                    HasShadow="True"
+                    CornerRadius="5">
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label
+                                Text="{Binding ID}"
+                                FontSize="Medium">
+                            </Label>
+                            <Label
+                                Text="."
+                                FontSize="Medium">
+                            </Label>
+
+                            <Label
+                                Text="{Binding ClientName}"
+                                FontSize="Medium">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                                 Binding="{Binding Completed}"
+                                                 Value="true">
+                                        <Setter Property="TextDecorations" Value="Strikethrough" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                        </StackLayout>
+                        <BoxView Color="Gray"
+                            HeightRequest="1"
+                            HorizontalOptions="Fill" />
+
+                        <StackLayout Orientation="Horizontal"
+                                   Spacing="10">
+                            <Label Text="Создана"
+                            TextColor="Silver"
+                            FontSize="Small" />
+                            <Label Text="{Binding CreateDate}"
+                            TextColor="Silver"
+                            FontSize="Small" />
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                   Spacing="10">
+                            <Label Text="Закрыта"
+                            TextColor="Silver"
+                            FontSize="Small" >
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                                     Binding="{Binding Completed}"
+                                                     Value="False">
+                                        <Setter Property="IsVisible" Value="False" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <Label Text="{Binding CloseDate}"
+                            TextColor="Silver"
+                            FontSize="Small" >
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                                 Binding="{Binding Completed}"
+                                                 Value="False">
+                                    <Setter Property="IsVisible" Value="False" />
+                                </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>
