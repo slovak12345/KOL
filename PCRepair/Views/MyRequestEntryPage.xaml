@@ -22,7 +22,26 @@
                 </StackLayout>
                 <StackLayout>
                     <Label Text="ФИО клиента"/>
-                    <Editor Text="{Binding ClientName}" />
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Label VerticalTextAlignment="Center"
+                            Text="Ф"/>
+                        <Editor Grid.Column="1"
+                                Text="{Binding ClientName}" />
+                    </Grid>
+                    
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Label VerticalTextAlignment="Center"
+                            Text="И"/>
+                        <Editor Grid.Column="1"
+                            Text="{Binding ClientSurName}" />
+                    </Grid>
+                    
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Label VerticalTextAlignment="Center"
+                            Text="О"/>
+                            <Editor Grid.Column="1"
+                            Text="{Binding ClientSurSurName}" />
+                    </Grid>
                 </StackLayout>
                 <StackLayout>
                     <Label Text="Конфигурация компьютера"/>
@@ -32,12 +51,9 @@
                 </StackLayout>
                 <StackLayout>
                     <Label Text="Неисправность"/>
-                    <Editor 
-                        Text="{Binding Malfunction}"
-                        HeightRequest="100"
-                        AutoSize="TextChanges"
-                        MaxLength="180" 
-                    />
+                    <Picker x:Name="MalfunctionPicker" 
+                            ItemsSource="{Binding Malfunction}" 
+                            SelectedItem="{Binding Malfunctionselected}" />
                 </StackLayout>
                 <StackLayout>
                     <Label Text="Выполненные работы"/>
