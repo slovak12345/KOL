@@ -26,12 +26,9 @@
                 </StackLayout>
                 <StackLayout>
                     <Label Text="Конфигурация компьютера"/>
-                    <Editor 
-                        Text="{Binding PCConfig}"
-                        HeightRequest="100"
-                        AutoSize="TextChanges"
-                        MaxLength="180" 
-                    />
+                    <Picker x:Name="PCConfigPicker" 
+                            ItemsSource="{Binding PCConfig}" 
+                            SelectedItem="{Binding PCConfigselected}" />
                 </StackLayout>
                 <StackLayout>
                     <Label Text="Неисправность"/>

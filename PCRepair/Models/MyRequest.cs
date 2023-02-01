@@ -11,6 +11,7 @@ namespace PCRepair.Models
         public DateTime CreateDate { get; set; }
         public string ClientName { get; set; }
         public List<string> PCConfig { get; set; }
+        public string PCConfigselected { get; set; }
 
         public string Malfunction { get; set; }
         public DateTime CloseDate { get; set; }
@@ -19,5 +20,16 @@ namespace PCRepair.Models
         public string SparePartsCost { get; set; }
         public bool Completed { get; set; }
 
+        public MyRequest()
+        {
+            PCConfig = new List<string>()
+            {
+                "Desktop",
+                "Laptop",
+                "Gaming PC",
+                "Workstation",
+                "Server"
+            };
+        }
     }
 }
