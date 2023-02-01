@@ -1,5 +1,6 @@
 ﻿using System;
 using SQLite;
+using System.Collections.Generic;
 
 namespace PCRepair.Models
 {
@@ -9,7 +10,8 @@ namespace PCRepair.Models
         public int ID { get; set; }
         public DateTime CreateDate { get; set; }
         public string ClientName { get; set; }
-        public string PCConfig { get; set; }
+        public List<string> PCConfig { get; set; }
+
         public string Malfunction { get; set; }
         public DateTime CloseDate { get; set; }
         public string RepairActions { get; set; }
